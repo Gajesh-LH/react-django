@@ -69,8 +69,6 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = ('/Users/livehealth/livehealthappenv/myFirstDjangoProject/templates')
-
 WSGI_APPLICATION = 'myFirstDjangoProject.wsgi.application'
 
 
@@ -138,3 +136,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['localhost', '*']

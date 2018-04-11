@@ -13,4 +13,5 @@ urlpatterns = [
 #Adding React App
 urlpatterns += [
     url(r'^$', initApp),
+    url(r'^createUser/', createUser),
 ]
