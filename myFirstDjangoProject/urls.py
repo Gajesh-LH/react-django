@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import viewsets, routers
 
-from initController.init import *
+from initApp.initController import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -12,5 +12,5 @@ urlpatterns = [
 
 #Adding React App
 urlpatterns += [
-    url(r'^/', initApp),
+    url(r'^$', initApp),
 ]
