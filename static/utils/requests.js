@@ -1,9 +1,10 @@
 // Add methods for api calls using axios here
 import Axios, {AxiosResponse, AxiosError} from 'axios';
+import querystring from 'querystring';
 
 export function doGet(url, onSuccess, onFailure) {
 
-    return Axios.get(`http://127.0.0.1:8000${url}`)
+    return Axios.get(url)
         .then((response) => {
             if (onSuccess) {
                 onSuccess(response);
@@ -20,7 +21,7 @@ export function doGet(url, onSuccess, onFailure) {
 
 export const doPost = (url, data, successCallback, failureCallback) => {
 
-    return Axios.post(`http://127.0.0.1:8000${url}`, data)
+    return Axios.post(url, querystring.stringify(data))
         .then((response) => {
             if (successCallback) {
                 successCallback(response || '');

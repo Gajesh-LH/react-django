@@ -9,6 +9,5 @@ def initApp(request):
 
 @csrf_exempt
 def createUser(request):
-    print request
-    data = UserSerializer(request.POST)
-    return HttpResponse(json.dumps({'username': data['username']}))
+    
+    return HttpResponse(json.dumps({'code': 200, 'data': {'notes': 'react-typescript', 'description': 'lorem ipsum'}}))
