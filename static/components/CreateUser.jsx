@@ -45,10 +45,17 @@ export class CreateUser extends React.Component {
         event.preventDefault();
 
         const {email, password, username, confirmPassword} = this.state;
+        
+        if (!password.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})')) {
+            showAlert(1, 'Password should be alphanumeric');
+            return;
+        }
+        
         if (password !== confirmPassword) {
             showAlert(1, 'passwords are not same.');
             return;
         }
+
         doPost(
             '/createUser/',
             {username, password, email},
@@ -62,17 +69,15 @@ export class CreateUser extends React.Component {
         this.props.history.push('/');
     }
 
-    fail = (error: any) => {
+    fail = (error) => {
         if (error.response && error.response.data) {
-            if (error.response.data.username && error.response.data.username[0]) {
+            if (error.response.data.message === 'UNIQUE constraint failed: auth_user.username') {
                 showAlert(1, 'Username is exist. Please choose other username');
                 return;
             }
 
-            if (error.response.data.email && error.response.data.email[0]) {
-                showAlert(1, 'An other account exist for this email.');
-                return;
-            }
+            showAlert(1, 'An other account exist for this email.');
+            return;
         }
 
         showAlert(1, 'Unable to create account please try again.');  
